@@ -7,20 +7,16 @@ Post.init(
   {
     id: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     text: {
-        type: DataTypes.STRING,
+        type: DataTypes.BLOB,
     },
     date_created: {
       type: DataTypes.DATE,

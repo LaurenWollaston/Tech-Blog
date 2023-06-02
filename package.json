@@ -1,4 +1,12 @@
 {
+    "name": "techline",
+    "version": "0.0.1",
+    "description": "functional nvm-compliant site",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "seed": "node seeds/seed.js"
+    },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",

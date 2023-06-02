@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techline: One of the World's Tech Blogs</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     {{!-- First just layout the grid --}}
@@ -12,12 +13,26 @@
         <header>
             {{!-- We will have the banner and the nav. Two rows. --}}
             <div class="flexRow" id="banner">
-
+                <a href="/"><img src="/image/techlineLogo.svg" style="height:100%"></a>
             </div>
-            <div class="flexRow">
-                
+            <div class="flexRow" id="navbar">
+                <div class="flexItem"><a href="/"><img src="/image/homeButton.png" class="navButton"></a></div>
+                {{#if loggedIn}}
+                <div class="flexItem"><a href="/dashboard"><img src="/image/dashboardButton.png" class="navButton"></a></div>
+                <div class="flexItem"><a href="/profile"><img src="/image/profileButton.png" class="navButton"></a></div>
+                {{else}}
+                <div class="flexItem"><a href="/login"><img src="/image/dashboardButton.png" class="navButton"></a></div>
+                <div class="flexItem"><a href="/login"><img src="/image/loginButton.png" class="navButton"></a></div>
+                {{/if}}
             </div>
         </header>
+    </div>
+    <div class="bodyContainer">
+        <main>
+            <div class="flexCol" id="main">
+                {{{ body }}}
+            </div>
+        </main>
     </div>
 </body>
 </html>
