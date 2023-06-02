@@ -1,0 +1,7 @@
+.headerContainer{
+    display: flex;
+}
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}

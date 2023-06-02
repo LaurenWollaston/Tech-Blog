@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS glob_db;
+CREATE DATABASE glob_db;
