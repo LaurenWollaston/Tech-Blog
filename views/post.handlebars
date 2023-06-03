@@ -1,0 +1,19 @@
+{{!-- Card container --}}
+<div class="card container" style="margin-top:1vh;">
+    <div class="cardHeader centered flexrow">
+        <h2>New Post</h2>
+    </div>
+    <div class="cardBody centered flexrow" style="margin: 20px;box-shadow:none;width:100%;">
+        <div class="cardMain flexcol" style="background-color:black"> 
+            <form action="/api/post" style="width: 100%;text-align: left;" id="submit">
+                <label for="title">Post Title:</label><br>
+                <input type="text" id="title" name="title"><br>
+                Post:<br>
+                <textarea id="poster" name="poster" rows="20" cols="50" form="submit" style="width:100%;margin-top:10px;"></textarea><br><br>
+                <span class="center" style="width:100%;"><input type="submit" value="Submit" id="clicker"style="margin-left:20vw;width:15%;"></span>
+            </form>
+        </div>
+    </div>
+</div>
+<script>const userID = {{userID}}</script>
+<script src="/js/post.js"></script>

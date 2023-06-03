@@ -102,4 +102,22 @@ router.get('/profile', async (req, res) => {
 }
 });
 
+router.get('/post', async (req, res) => {
+  if (req.session.loggedIn){
+  try {
+    const userID = req.session.user_id;
+    res.render('post', {
+      userID,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+  }
+  else{
+    res.redirect(`/login`);
+  }
+});
+
 module.exports = router;
