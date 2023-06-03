@@ -1,0 +1,26 @@
+{{#if posts}}
+{{#each posts as |post|}}
+{{!-- Card container --}}
+<div class="card container" style="margin-top:1vh;">
+    <div class="cardHeader centered flexrow">
+        <h2><h1 style="color:rgb(0, 255, 136);">{{post.title}}</h1> on <span style="color:rgb(234, 238, 14);">{{post.date_created}}</span></h2>
+    </div>
+    <div class="cardBody centered flexrow">
+        <div class="cardMain flexcol"> 
+            {{post.text}}
+        </div>
+    </div>
+</div>
+{{/each}}
+{{else}}
+<div class="flexCol bigBox">
+    <div class="flexCol bigBoxHeader">
+        It looks like nothing's here right now
+    </div>
+    <div class="flexCol bigBoxBody">
+       {{#if personalDashboard}} You should fix that! Make a post.
+       {{else}} Come back later to see this users posts!
+       {{/if}}
+    </div>
+</div>
+{{/if}}
