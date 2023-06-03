@@ -123,11 +123,45 @@ router.get('/post', async (req, res) => {
   }
 });
 
+router.get('/edit', async (req, res) => {
+  post_id=req.query.id;
+  post = await Post.findOne({ where: {id: post_id},
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['id'],
+      },
+    ],});
+  const activePost = await post.get({ plain: true });
+  if (req.session.user_id == post.user.id){
+  try {
+    const userID = req.session.user_id;
+    res.render('edit', {
+      userID, activePost, post_id,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+  }
+  else{
+    res.redirect(`/`);
+  }
+});
+
 router.get('/post/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const userID = req.session.user_id;
-    const postData = await Post.findOne({ where: { id } });
+    const postData = await Post.findOne({ where: { id }, include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['username'],
+      },
+    ], });
     const post = await postData.get({ plain: true });
     const commentData = await Comment.findAll({
       where:{ parent_id : id},
@@ -143,10 +177,12 @@ router.get('/post/:id', async (req, res) => {
     const comments = await commentData.map((comment) =>
     comment.get({ plain: true })
   );
-    res.render('thread', {
-      post, comments, userID,
+  const isPoster = (post.poster_id==req.session.user_id);
+
+  res.render('thread', {
+      post, comments, userID, isPoster,
       loggedIn: req.session.loggedIn,
-    });
+  });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

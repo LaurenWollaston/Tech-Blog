@@ -1,40 +1,87 @@
 <div class="card container" style="margin-top:1vh;">
-    <div class="cardHeader centered flexrow">
-        <h2><h1 style="color:rgb(0, 255, 136);font-size:6vh;">{{post.title}}</h1> by <span style="color:rgb(234, 238, 14);"><a style="color:rgb(234, 238, 14)" class="unadornedAnchor" href="/user/{{post.user.username}}">{{post.user.username}}</a></span> on <span style="color:rgb(234, 238, 14);">{{post.date_created}}</span></h2>
+  <div class="cardHeader centered flexrow" style="display:inline-flex;">
+    <div class="flexCol" style="display:inline;">
+    <h2><h1 style="color:rgb(0, 255, 136);font-size:6vh;">{{post.title}}</h1>
+      by
+      <span style="color:rgb(234, 238, 14);"><a
+          style="color:rgb(234, 238, 14)"
+          class="unadornedAnchor"
+          href="/user/{{post.user.username}}"
+        >{{post.user.username}}</a></span>
+      on
+      <span style="color:rgb(234, 238, 14);">{{post.date_created}}</span></h2>
+      </div>
+      {{#if isPoster}}
+      <div class="flexrow" style="margin: auto 0;margin-left: auto; margin-right:2vw;">
+        <a href="#" id="edit"><img style="height:8vh" src="/image/postButton.png"></a>
+        <a href="#" id="delete"><img style="height:8vh" src="/image/deleteButton.png"></a>
+      </div>
+      {{/if}}
+  </div>
+  <div class="cardBody centered flexrow">
+    <div class="cardMain flexcol">
+      {{post.text}}
     </div>
-    <div class="cardBody centered flexrow">
-        <div class="cardMain flexcol"> 
-            {{post.text}}
-        </div>
-    </div>
+  </div>
 </div>
 <div class="card container" style="margin-top:1vh;">
-    <div class="cardHeader flexrow" style="text-align:left;">
-        <h2>New Comment</h2>
+  <div class="cardHeader flexrow" style="text-align:left;">
+    <h2>New Comment</h2>
+  </div>
+  <div
+    class="cardBody centered flexrow"
+    style="margin: 20px;box-shadow:none;width:100%;"
+  >
+    <div
+      class="cardMain flexcol"
+      style="background-color:black;padding: 0px 15px;"
+    >
+      <form
+        action="/api/comment"
+        style="width: 100%;text-align: left;"
+        id="submit"
+      >
+        Post:<br />
+        <textarea
+          id="poster"
+          name="poster"
+          rows="6"
+          cols="50"
+          form="submit"
+          style="width:100%;margin-top:10px;"
+        ></textarea><br /><br />
+        <span class="center" style="width:100%;"><input
+            type="submit"
+            value="Submit"
+            id="clicker"
+            style="margin-left: 42%;width:15%;"
+          /></span>
+      </form>
     </div>
-    <div class="cardBody centered flexrow" style="margin: 20px;box-shadow:none;width:100%;">
-        <div class="cardMain flexcol" style="background-color:black;padding: 0px 15px;"> 
-            <form action="/api/comment" style="width: 100%;text-align: left;" id="submit">
-                Post:<br>
-                <textarea id="poster" name="poster" rows="6" cols="50" form="submit" style="width:100%;margin-top:10px;"></textarea><br><br>
-                <span class="center" style="width:100%;"><input type="submit" value="Submit" id="clicker"style="margin-left: 42%;width:15%;"></span>
-            </form>
-        </div>
-    </div>
+  </div>
 </div>
 
 {{#each comments as |comment|}}
-{{!-- Card container --}}
-<div class="card container" style="margin-top:1vh;">
+  {{! Card container }}
+  <div class="card container" style="margin-top:1vh;">
     <div class="cardHeader centered flexrow">
-        <h2>Posted by <span style="color:rgb(234, 238, 14);"><a style="color:rgb(234, 238, 14)" class="unadornedAnchor" href="/user/{{comment.user.username}}">{{comment.user.username}}</a></span> on <span style="color:rgb(234, 238, 14);">{{comment.date_created}}</span></h2>
+      <h2>Posted by
+        <span style="color:rgb(234, 238, 14);"><a
+            style="color:rgb(234, 238, 14)"
+            class="unadornedAnchor"
+            href="/user/{{comment.user.username}}"
+          >{{comment.user.username}}</a></span>
+        on
+        <span
+          style="color:rgb(234, 238, 14);"
+        >{{comment.date_created}}</span></h2>
     </div>
     <div class="cardBody centered flexrow">
-        <div class="cardMain flexcol"> 
-            {{comment.text}}
-        </div>
+      <div class="cardMain flexcol">
+        {{comment.text}}
+      </div>
     </div>
-</div>
+  </div>
 {{/each}}
 <script>const userID = {{userID}}</script>
 <script src="/js/comment.js"></script>

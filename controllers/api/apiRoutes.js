@@ -52,6 +52,36 @@ router.post('/post', async (req, res) => {
   }
 });
 
+router.delete('/post/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    await Comment.destroy({ where: {parent_id: id} });
+    await Post.destroy({where:{id}});
+    res.status(200).json({ message: 'Post successfully deleted!' });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
+router.put('/edit', async (req, res) => {
+  try {
+    const { title, post, post_id, userID } = req.body;
+    var text = post;
+    const user = await User.findOne({ where: { id: userID } });
+    if(!user){
+      res.status(400).json({message:'ERROR: USER NOT FOUND'});
+      return;
+    }
+    await Post.update({ title, text},{where: {id: post_id}});
+    res.status(200).json({ message: 'Post successfully updated!' });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
 router.post('/comment', async (req, res) => {
   try {
     const { text, poster_id, parent_id} = req.body;
