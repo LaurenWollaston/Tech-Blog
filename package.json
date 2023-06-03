@@ -1,6 +1,6 @@
 {
     "name": "techline",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "functional nvm-compliant site",
     "main": "server.js",
     "scripts": {
