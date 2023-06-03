@@ -98,6 +98,7 @@ textarea {
     justify-content: center;
     align-items: center;
     margin: auto;
+    width: 100%;
   }
   
   .cardHeader {
@@ -120,6 +121,7 @@ textarea {
     border-bottom-right-radius: 10px;
     box-shadow: 3px 3px 5px var(--shadow);
     overflow-wrap: anywhere;
+    width: 100%;
   }
   
   .cardMain {

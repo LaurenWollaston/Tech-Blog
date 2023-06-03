@@ -1,5 +1,5 @@
 {{#if posts}}
-{{#each posts as |post|}}
+{{#each (slice (sort posts "date_created" "desc") 0 5) as |post|}}
 {{!-- Card container --}}
 <div class="card container" style="margin-top:1vh;">
     <div class="cardHeader centered flexrow">
