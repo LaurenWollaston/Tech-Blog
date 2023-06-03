@@ -196,6 +196,11 @@ textarea {
 #singup:hover{
   box-shadow: 2px 2px 1px white;
 }
+@-moz-document url-prefix(){
+  .flexItem{
+    width: 3%;
+  }
+}
 
 @media screen and (max-width: 1300px) {
   #main{
