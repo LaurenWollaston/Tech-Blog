@@ -20,6 +20,7 @@
                 {{#if loggedIn}}
                 <div class="flexItem"><a href="/dashboard"><img src="/image/dashboardButton.png" class="navButton"></a></div>
                 <div class="flexItem"><a href="/profile"><img src="/image/profileButton.png" class="navButton"></a></div>
+                <div class="flexItem"><a href="/logout" id="logout"><img src="/image/logoutButton.png" class="navButton"></a></div>
                 {{else}}
                 <div class="flexItem"><a href="/login"><img src="/image/dashboardButton.png" class="navButton"></a></div>
                 <div class="flexItem"><a href="/login"><img src="/image/loginButton.png" class="navButton"></a></div>
@@ -27,12 +28,13 @@
             </div>
         </header>
     </div>
-    <div class="bodyContainer">
+    <div class="bodyContainer center">
         <main>
             <div class="flexCol" id="main">
                 {{{ body }}}
             </div>
         </main>
     </div>
+<script src="/js/script.js"></script>
 </body>
 </html>

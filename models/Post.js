@@ -22,6 +22,21 @@ Post.init(
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
+      get() {
+        const date = this.getDataValue('date_created');
+        const options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+        };
+        return date.toLocaleString('en-US', options);
+      },
+      set(value) {
+        const utcDate = new Date(value);
+        this.setDataValue('date_created', utcDate.toISOString());
+      },
     },
     poster_id: {
       type: DataTypes.INTEGER,
