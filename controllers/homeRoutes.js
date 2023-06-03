@@ -33,6 +33,7 @@ router.get('/dashboard', async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: { poster_id: req.session.user_id},
+      order: [['date_created', 'DESC']],
     });
     const userData = await User.findOne({where: {id: req.session.user_id}});
     const user = userData.get({ plain: true });
@@ -65,6 +66,7 @@ router.get('/user/:username', async (req, res) => {
     const user = userData.get({ plain: true });
     const postData = await Post.findAll({
       where: { poster_id: user.id},
+      order: [['date_created', 'DESC']],
     });
     const posts = await postData.map((post) =>
       post.get({ plain: true })
