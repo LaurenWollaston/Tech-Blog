@@ -13,7 +13,7 @@
         <header>
             {{!-- We will have the banner and the nav. Two rows. --}}
             <div class="flexRow" id="banner">
-                <a href="/"><img src="/image/techlineLogo.svg" style="height:100%"></a>
+                <a href="/"><img src="/image/techlineLogo.svg" id="logo" style="height:100%"></a>
             </div>
             <div class="flexRow" id="navbar">
                 <div class="flexItem"><a href="/"><img src="/image/homeButton.png" class="navButton"></a></div>
@@ -21,9 +21,7 @@
                 <div class="flexItem"><a href="/dashboard"><img src="/image/dashboardButton.png" class="navButton"></a></div>
                 <div class="flexItem"><a href="/profile"><img src="/image/profileButton.png" class="navButton"></a></div>
                 <div class="flexItem" style="margin-right:0;"><a href="/post" id="post"><img src="/image/postButton.png" class="navButton"></a></div>
-                <span style="margin-left:auto;">
-                <div class="flexItem" style="margin-right:0;"><a href="/logout" id="logout"><img src="/image/logoutButton.png" class="navButton"></a></div>
-                </span>
+                <div class="flexItem" style="margin-right:0;margin-left:auto;"><a href="/logout" id="logout"><img src="/image/logoutButton.png" class="navButton"></a></div>
                 {{else}}
                 <div class="flexItem"><a href="/login"><img src="/image/dashboardButton.png" class="navButton"></a></div>
                 <div class="flexItem"><a href="/login"><img src="/image/loginButton.png" class="navButton"></a></div>
