@@ -24,6 +24,9 @@ app.use(
     secret: 'Z@nmXEwsvR2/Zk0]LbqBE9Jop-dybZ',
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, 
+    },
     store: new SequelizeStore({
       db: sequelize,
     }),
