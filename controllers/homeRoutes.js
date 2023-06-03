@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
           attributes: ['username'],
         },
       ],
+      order: [['date_created', 'DESC']],
     });
 
     const posts = await postData.map((post) =>
