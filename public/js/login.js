@@ -24,3 +24,5 @@ if (username && password) {
 };
 submitbutton = document.getElementById('submit')
 submitbutton.addEventListener('submit', loginFormHandler);
+signupbutton = document.getElementById('signup')
+signupbutton.addEventListener('click', function(){document.location.replace('/signup');});

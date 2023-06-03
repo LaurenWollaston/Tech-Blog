@@ -59,6 +59,14 @@ router.get('/dashboard', async (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login', { loggedIn: req.session.loggedIn });
 });
+
+router.get('/signup', (req, res) => {
+  if(req.session.loggedIn){
+    res.redirect('/');
+  }
+  res.render('signup');
+});
+
 router.get('/user/:username', async (req, res) => {
   try {
     const { username } = req.params;
@@ -84,6 +92,8 @@ router.get('/user/:username', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 router.get('/profile', async (req, res) => {
   if(req.session.loggedIn){

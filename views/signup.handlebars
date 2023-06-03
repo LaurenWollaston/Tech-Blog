@@ -2,18 +2,20 @@
 <div class="card container" style="margin-top:1vh;">
     <div class="cardHeader centered flexrow">
         <h2>Login</h2>
+        <p id="errorText" style="color: red;"></p>
     </div>
     <div class="cardBody centered flexrow" style="margin: 20px;box-shadow:none;width:100%;">
         <div class="cardMain flexcol" style="background-color:black"> 
-            <form action="/api/login" style="width: 100%;text-align: center;" id="submit">
+            <form action="/api/signup" style="width: 100%;text-align: center;" id="submit">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" autocomplete="username"><br>
+                <label for="email">E-Mail:</label><br>
+                <input type="text" id="email" name="email" autocomplete="email"><br>
                 <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password" autocomplete="new-password"><br><br>
                 <span class="center"><input type="submit" value="Submit" autocomplete="password"></span>
             </form>
-            <button id="signup" style="margin: 20px 10px;">Sign-Up</button>
         </div>
     </div>
 </div>
-<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>

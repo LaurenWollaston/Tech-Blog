@@ -25,6 +25,40 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/signup', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    const userExists = await User.findOne({ where: { email } });
+    console.log(userExists);
+
+    if (userExists) {
+      res.status(400).json({ message: 'A user with this E-Mail already exists.' });
+      return;
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      res.status(400).json({
+        message:
+          'Password must contain at least 8 characters, including at least one lowercase letter, one uppercase letter, and one number.',
+      });
+      return;
+    }
+    const newUser = await User.create({ username, email, password });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.username = newUser.username;
+      req.session.user_id = newUser.id;
+
+      res.status(200).json({ user: newUser, message: 'You are now logged in!' });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {

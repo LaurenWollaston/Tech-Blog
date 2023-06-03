@@ -186,6 +186,16 @@ textarea {
 #logo{
   width:100%;
 }
+#signup{
+  margin-top: 20px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    padding: 5px;
+}
+#singup:hover{
+  box-shadow: 2px 2px 1px white;
+}
 
 @media screen and (max-width: 1300px) {
   #main{
