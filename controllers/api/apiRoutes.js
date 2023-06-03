@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Post } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 router.post('/login', async (req, res) => {
     try {
@@ -49,6 +49,26 @@ router.post('/post', async (req, res) => {
     res.status(200).json({ message: 'Post successfully submitted!' });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.post('/comment', async (req, res) => {
+  try {
+    const { text, poster_id, parent_id} = req.body;
+    const user = await User.findOne({ where: { id: poster_id } });
+    const parent = await Post.findOne({where:{id:parent_id}});
+    if(!user){
+      res.status(400).json({message:'ERROR: USER NOT FOUND'});
+      return;
+    }
+    if(!parent){
+      res.status(404).json({message:'ERROR:THREAD NOT FOUND'})
+    }
+    await Comment.create({ text, poster_id, parent_id});
+    res.status(200).json({ message: 'Comment successfully submitted!' });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 });
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -120,6 +120,36 @@ router.get('/post', async (req, res) => {
   }
   else{
     res.redirect(`/login`);
+  }
+});
+
+router.get('/post/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userID = req.session.user_id;
+    const postData = await Post.findOne({ where: { id } });
+    const post = await postData.get({ plain: true });
+    const commentData = await Comment.findAll({
+      where:{ parent_id : id},
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['username'],
+        },
+      ],
+      order: [['date_created', 'DESC']],
+    });
+    const comments = await commentData.map((comment) =>
+    comment.get({ plain: true })
+  );
+    res.render('thread', {
+      post, comments, userID,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 

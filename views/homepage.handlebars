@@ -3,7 +3,7 @@
 {{!-- Card container --}}
 <div class="card container" style="margin-top:1vh;">
     <div class="cardHeader centered flexrow">
-        <h2><h1 style="color:rgb(0, 255, 136);">{{post.title}}</h1> by <span style="color:rgb(234, 238, 14);"><a style="color:rgb(234, 238, 14)" class="unadornedAnchor" href="/user/{{post.user.username}}">{{post.user.username}}</a></span> on <span style="color:rgb(234, 238, 14);">{{post.date_created}}</span></h2>
+        <h2><a class="unadornedAnchor" href="/post/{{post.id}}"><h1 style="color:rgb(0, 255, 136);">{{post.title}}</h1></a> by <span style="color:rgb(234, 238, 14);"><a style="color:rgb(234, 238, 14)" class="unadornedAnchor" href="/user/{{post.user.username}}">{{post.user.username}}</a></span> on <span style="color:rgb(234, 238, 14);">{{post.date_created}}</span></h2>
     </div>
     <div class="cardBody centered flexrow">
         <div class="cardMain flexcol"> 
